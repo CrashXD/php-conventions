@@ -6,6 +6,89 @@
 «МОЖЕТ» / «ВОЗМОЖНО» («MAY») и «НЕОБЯЗАТЕЛЬНО» («OPTIONAL») в этом документе следует понимать так,
 как это описано в [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) (и его [переводе](http://rfc.com.ru/rfc2119.htm)).
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [1. Оформление](#1-%D0%BE%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)
+  - [1.1. Базовый стандарт оформления кода](#11-%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9-%D1%81%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82-%D0%BE%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA%D0%BE%D0%B4%D0%B0)
+  - [1.2. Строки](#12-%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8)
+  - [1.3. Выравнивание присвоений переменных и элементов массива](#13-%D0%B2%D1%8B%D1%80%D0%B0%D0%B2%D0%BD%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%B8%D1%81%D0%B2%D0%BE%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D1%85-%D0%B8-%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B0)
+  - [1.4. Массивы](#14-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D1%8B)
+  - [1.5. Последовательность вызовов (Chaining)](#15-%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2%D0%BE%D0%B2-chaining)
+  - [1.6. Выделение управляющих инструкций](#16-%D0%B2%D1%8B%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D1%85-%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B9)
+- [2. Документирование](#2-%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)
+  - [2.1. Базовый стандарт для оформления документации в коде](#21-%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9-%D1%81%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82-%D0%B4%D0%BB%D1%8F-%D0%BE%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8-%D0%B2-%D0%BA%D0%BE%D0%B4%D0%B5)
+  - [2.2. Дублирование типов в docblock](#22-%D0%B4%D1%83%D0%B1%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2-%D0%B2-docblock)
+  - [2.3. Массивы в docblock](#23-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D1%8B-%D0%B2-docblock)
+  - [2.4. Неопределенные типы аргументов и возвращаемых результатов](#24-%D0%BD%D0%B5%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D1%82%D0%B8%D0%BF%D1%8B-%D0%B0%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-%D0%B8-%D0%B2%D0%BE%D0%B7%D0%B2%D1%80%D0%B0%D1%89%D0%B0%D0%B5%D0%BC%D1%8B%D1%85-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2)
+  - [2.5. Тип переменных](#25-%D1%82%D0%B8%D0%BF-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D1%85)
+  - [2.6. Свойства](#26-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0)
+  - [2.7. Методы и функции](#27-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B-%D0%B8-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8)
+- [3. Объявление констант, свойств и методов](#3-%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D0%B0%D0%BD%D1%82-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2-%D0%B8-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2)
+  - [3.1. Последовательность объявлений констант, свойств и методов](#31-%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D0%B0%D0%BD%D1%82-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2-%D0%B8-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2)
+  - [3.2. Именование свойств](#32-%D0%B8%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2)
+  - [3.3. Разделение свойств](#33-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2)
+  - [3.4. Модификаторы доступа для свойств](#34-%D0%BC%D0%BE%D0%B4%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82%D0%BE%D1%80%D1%8B-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2)
+  - [3.5 Типы свойств](#35-%D1%82%D0%B8%D0%BF%D1%8B-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2)
+  - [3.6. Именование методов](#36-%D0%B8%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2)
+  - [3.7. Разделение методов](#37-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2)
+  - [3.8. Модификаторы доступа для методов](#38-%D0%BC%D0%BE%D0%B4%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82%D0%BE%D1%80%D1%8B-%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2)
+  - [3.9. Порядок аргументов в методе](#39-%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA-%D0%B0%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-%D0%B2-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B5)
+  - [3.10. Массив в виде аргумента](#310-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2-%D0%B2-%D0%B2%D0%B8%D0%B4%D0%B5-%D0%B0%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0)
+- [4. Безопасность](#4-%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C)
+  - [4.1. Неявные приведения типов](#41-%D0%BD%D0%B5%D1%8F%D0%B2%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2)
+  - [4.2. Сравнения с преобразованием типов](#42-%D1%81%D1%80%D0%B0%D0%B2%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D1%81-%D0%BF%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2)
+  - [4.3. Инструкция switch](#43-%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F-switch)
+  - [4.4. Присвоения в условных операциях](#44-%D0%BF%D1%80%D0%B8%D1%81%D0%B2%D0%BE%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B2-%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%BD%D1%8B%D1%85-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%D1%85)
+  - [4.5. Ошибки](#45-%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B8)
+  - [4.6. Оператор управления ошибками @](#46-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80-%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0%D0%BC%D0%B8-)
+  - [4.7. goto](#47-goto)
+  - [4.8. eval](#48-eval)
+  - [4.9. Глобальные переменные и global](#49-%D0%B3%D0%BB%D0%BE%D0%B1%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8-global)
+  - [4.10. Статические свойства](#410-%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0)
+  - [4.11. Суперглобальные переменные](#411-%D1%81%D1%83%D0%BF%D0%B5%D1%80%D0%B3%D0%BB%D0%BE%D0%B1%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5)
+  - [4.12. Динамическая подстановка имен](#412-%D0%B4%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D0%BF%D0%BE%D0%B4%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8%D0%BC%D0%B5%D0%BD)
+  - [4.13. Магические методы](#413-%D0%BC%D0%B0%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B)
+  - [4.14. Валидация аргументов](#414-%D0%B2%D0%B0%D0%BB%D0%B8%D0%B4%D0%B0%D1%86%D0%B8%D1%8F-%D0%B0%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2)
+  - [4.15. \DateTime](#415-%5Cdatetime)
+  - [4.16. Обработка часовых поясов](#416-%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0-%D1%87%D0%B0%D1%81%D0%BE%D0%B2%D1%8B%D1%85-%D0%BF%D0%BE%D1%8F%D1%81%D0%BE%D0%B2)
+  - [4.17. SQL](#417-sql)
+- [5. Принципы программирования](#5-%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)
+  - [5.1. Здравый Смысл](#51-%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%8B%D0%B9-%D1%81%D0%BC%D1%8B%D1%81%D0%BB)
+  - [5.2. YAGNI](#52-yagni)
+  - [5.3. SOLID](#53-solid)
+  - [5.4. DRY](#54-dry)
+  - [5.5. KISS](#55-kiss)
+  - [5.6. TMTOWTDI](#56-tmtowtdi)
+  - [5.7. GRASP](#57-grasp)
+- [6. Антишаблоны проектирования](#6-%D0%B0%D0%BD%D1%82%D0%B8%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)
+  - [6.1. ActiveRecord](#61-activerecord)
+  - [6.2. Singleton](#62-singleton)
+- [7. Тестирование](#7-%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)
+  - [7.1. Покрытие кода](#71-%D0%BF%D0%BE%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B5-%D0%BA%D0%BE%D0%B4%D0%B0)
+  - [7.2. Стратегия тестирования](#72-%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D1%8F-%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)
+  - [7.3. Разделение тест методов](#73-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2)
+  - [7.4. Тестируемый объект](#74-%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D1%83%D0%B5%D0%BC%D1%8B%D0%B9-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82)
+  - [7.5. Проверка результатов](#75-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2)
+- [8. PHPUnit](#8-phpunit)
+  - [8.1. Именование тестовых классов](#81-%D0%B8%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D1%85-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2)
+  - [8.1. Именование тест методов](#81-%D0%B8%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2)
+  - [8.2. Структура теста](#82-%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D1%82%D0%B5%D1%81%D1%82%D0%B0)
+  - [8.3. Переменные, используемые в тесте](#83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%D1%8B%D0%B5-%D0%B2-%D1%82%D0%B5%D1%81%D1%82%D0%B5)
+  - [8.4. Mock-объекты](#84-mock-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B)
+  - [8.5. Инкременты вызовов mock-объектов](#85-%D0%B8%D0%BD%D0%BA%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D1%8B-%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2%D0%BE%D0%B2-mock-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%BE%D0%B2)
+  - [8.6. Поведение методов mock-объектов](#86-%D0%BF%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2-mock-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%BE%D0%B2)
+  - [8.7 Порядок утверждений для одного значения](#87-%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA-%D1%83%D1%82%D0%B2%D0%B5%D1%80%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B9-%D0%B4%D0%BB%D1%8F-%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F)
+  - [8.8. Проверка утверждений на основании результатов собственных проверок](#88-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D1%83%D1%82%D0%B2%D0%B5%D1%80%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8-%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2-%D1%81%D0%BE%D0%B1%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BE%D0%BA)
+  - [8.9. Проверки значений на основании `TestCase::callback`](#89-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B8-%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8-testcasecallback)
+  - [8.10. Проверка утверждений для числовых значений](#810-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D1%83%D1%82%D0%B2%D0%B5%D1%80%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B9-%D0%B4%D0%BB%D1%8F-%D1%87%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D1%8B%D1%85-%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B9)
+  - [8.11. Проверка утверждений для \DateTimeImmutable](#811-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D1%83%D1%82%D0%B2%D0%B5%D1%80%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B9-%D0%B4%D0%BB%D1%8F-%5Cdatetimeimmutable)
+- [9. IDE](#9-ide)
+  - [9.1. Inspections и Code Style](#91-inspections-%D0%B8-code-style)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 1. Оформление
 
 ### 1.1. Базовый стандарт оформления кода
@@ -45,7 +128,7 @@ $variableName = 'variableName';
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $varName = 'varName';
 $variableName = 'variableName';
 ```
@@ -58,7 +141,7 @@ $secondVariableWithVeryLongNameHere =
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $varName                            = 'varName';
 $secondVariableWithVeryLongNameHere
     = '123456790123456790123456790123456790123456790123456790123456790123456790123456790';
@@ -80,7 +163,7 @@ $variableName = '123456790123456790123456790123456790123456790123456790123456790
 ```
 
 ```php
-// Не правильно
+// Неправильно
 [
     'elementName' => 'elementName',
     'longNameElement' => 'longNameElement',
@@ -97,7 +180,7 @@ $variableName = '123456790123456790123456790123456790123456790123456790123456790
 ```
 
 ```php
-// Не правильно
+// Неправильно
 [
     'elementName'                       => 'elementName',
     'secondElementWithVeryLongNameHere'
@@ -128,7 +211,7 @@ $variableName = '123456790123456790123456790123456790123456790123456790123456790
 ```
 
 ```php
-// Не правильно
+// Неправильно
 [
     'firstElement'  => 'firstElement',
     'secondElement' => 'secondElement'
@@ -141,7 +224,7 @@ $variableName = '123456790123456790123456790123456790123456790123456790123456790
 ```
 
 ```php
-// Не правильно
+// Неправильно
 ['firstElement' => 'firstElement', 'secondElement' => 'secondElement',]
 ```
 
@@ -158,7 +241,7 @@ $this->firstMethod();
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $this
     ->firstMethod();
 ```
@@ -171,12 +254,12 @@ $this
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $this->firstMethod()->secondMethod();
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $this
     ->firstMethod()->secondMethod();
 ```
@@ -196,7 +279,7 @@ $this
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $this->firstMethod()->thirdMethod(
     $firstArgument,
     $secondArgument,
@@ -225,7 +308,7 @@ if ($count === 5) {
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $count = 5; // Отсутствует перевод строки
 if ($count === 5) {
 // ...
@@ -244,7 +327,7 @@ $length = 12; // Отсутствует перевод строки
 ```
 
 ```php
-// Не правильно
+// Неправильно
 {
 
     // Лишняя пустая строка
@@ -264,7 +347,10 @@ $length = 12; // Отсутствует перевод строки
 
 ### 2.2. Дублирование типов в docblock
 
-Указание типов аргументов с помощью `@param` и `@return`, дублирующее сигнатуру метода НЕДОПУСТИМО.
+Указание типов аргументов с помощью `@param` и `@return`, дублирующее сигнатуру метода НЕДОПУСТИМО, кроме случаев:
+
+* Наличия комментария к параметру, или результату.
+* Аннотации используются сторонними средствами: psalm, phan, phpstan, и т.д.
 
 ```php
 // Правильно
@@ -274,7 +360,7 @@ public function incrementProductPriceByName(string $productName, float $price): 
 ```
 
 ```php
-// Не правильно
+// Неправильно
 /**
  * @param string $productName
  * @param float  $price
@@ -283,6 +369,48 @@ public function incrementProductPriceByName(string $productName, float $price): 
 public function incrementProductPriceByName(string $productName, float $price): bool
 {
 // ...
+```
+
+```php
+// Правильно
+/** 
+ * @param array $parsedUrl
+ * @phan-param array{scheme:string,host:string,path:string} $parsedUrl
+ * @psalm-param array{scheme:string,host:string,path:string} $parsedUrl  
+*/
+public function showUrl(string $label, array $parsedUrl, string $host): string
+{
+```
+
+Указание типов свойств с помощью `@var`, дублирующее тип свойства НЕДОПУСТИМО, кроме случаев наличия комментария к
+свойству (php 7.4+).
+
+```php
+// Правильно (< php 7.4)
+/** @var string */
+private $productName;
+```
+
+```php
+// Неправильно (< php 7.4)
+private $productName;
+```
+
+```php
+// Правильно (php 7.4+)
+private ?string $productName;
+```
+
+```php
+// Правильно (php 7.4+)
+/** @var string|null Contains product name */
+private ?string $productName;
+```
+
+```php
+// Неправильно (php 7.4+)
+/** @var string|null */
+private ?string $productName;
 ```
 
 ### 2.3. Массивы в docblock
@@ -300,7 +428,7 @@ public function incrementProductPricesByNames(array $productNames, float $price)
 ```
 
 ```php
-// Не правильно
+// Неправильно
 /**
  * @param array $productNames
  */
@@ -326,7 +454,7 @@ public function mixedMethod($stringOrIntArgument)
 ```
 
 ```php
-// Не правильно
+// Неправильно
 /**
  * @param mixed $stringOrIntArgument
  * @return mixed
@@ -365,7 +493,11 @@ foreach ($rows as $row) {
 
 ### 2.6. Свойства
 
-Свойства класса ДОЛЖНЫ содержать однострочный docblock, определяющий все возможные типы значений, допустимые в нем.
+Свойства класса ДОЛЖНЫ содержать либо декларацию типа, либо docblock для всех возможных типов значений, которое они
+могут содержать.
+ДОПУСТИМО указывать декларацию типа и docblock только в случаях, когда dockblock уточняет декларацию, либо при наличии
+комментария.
+Если docblock МОЖЕТ быть описан одной строкой — ДОЛЖЕН использоваться однострочный docblock.
 
 ```php
 /** @var string[]|null */
@@ -375,7 +507,14 @@ private $names;
 private $count;
 ```
 
-### 2.6. Методы и функции
+```php
+/** @var string[]|null */
+private ?array $names;
+
+private ?int $count;
+```
+
+### 2.7. Методы и функции
 
 Docblock для методов и функций ДОЛЖНЫ быть многострочными.
 
@@ -425,7 +564,7 @@ private $userNames;
 ```
 
 ```php
-// Не правильно
+// Неправильно
 /** @var string[] */
 private $data;
 ```
@@ -446,7 +585,7 @@ private $userIds;
 ```
 
 ```php
-// Не правильно
+// Неправильно
 /** @var string[] */
 private $userNames;
 /** @var int[] */
@@ -461,7 +600,7 @@ private $userIds;
 ```
 
 ```php
-// Не правильно
+// Неправильно
 {
 
     /** @var string[] */
@@ -476,7 +615,7 @@ private $userIds;
 ```
 
 ```php
-// Не правильно
+// Неправильно
     /** @var string[] */
     private $userNames;
 
@@ -492,7 +631,12 @@ private $userIds;
 * `public` - использование НЕДОПУСТИМО;
 * `static` - использование НЕДОПУСТИМО.
 
-### 3.5. Именование методов
+### 3.5 Типы свойств
+
+Свойства класса ДОЛЖНЫ содержать либо декларацию типа, либо docblock для всех возможных типов значений, которое они
+могут содержать.
+
+### 3.6. Именование методов
 
 Названия методов ДОЛЖНЫ описывать предназначение их использования внешним кодом, а не детали реализации.
 
@@ -502,11 +646,11 @@ public function findUserById(int $id): ?User
 ```
 
 ```php
-// Не правильно
+// Неправильно
 public function find(int $id): ?User
 ```
 
-### 3.6. Разделение методов
+### 3.7. Разделение методов
 
 Каждый метод ДОЛЖЕН отделяться от других методов, свойств и констант одной пустой строкой.
 Если метод объявляется, как первый элемент класса — пустая строка перед ним НЕДОПУСТИМА.
@@ -524,7 +668,7 @@ public function findUserByName(string $name): ?User
 ```
 
 ```php
-// Не правильно
+// Неправильно
 public function findUserById(int $id): ?User
 // ...
 }
@@ -540,7 +684,7 @@ public function findUserByName(string $name): ?User
 ```
 
 ```php
-// Не правильно
+// Неправильно
 {
 
     public function findUserById(int $id): ?User
@@ -553,13 +697,13 @@ public function findUserByName(string $name): ?User
 ```
 
 ```php
-// Не правильно
+// Неправильно
     public function findUserById(int $id): ?User
 
 }
 ```
 
-### 3.7. Модификаторы доступа для методов
+### 3.8. Модификаторы доступа для методов
 
 Для модификаторов доступа к свойствам ДОЛЖНЫ выполняться следующие правила:
 
@@ -568,14 +712,14 @@ public function findUserByName(string $name): ?User
 * `public` - СЛЕДУЕТ использовать для методов, которые предназначены для использования из вне;
 * `static` - использование НЕДОПУСТИМО.
 
-### 3.8. Порядок аргументов в методе
+### 3.9. Порядок аргументов в методе
 
 Аргументы метода ДОЛЖНЫ объявляться в следующей последовательности:
 
 1. Типизированные аргументы.
 2. Nullable-аргументы.
 3. Опциональные аргументы.
-4. Аргумент с `...`.
+4. Аргумент с `...`. (php 7.4+)
 
 ```php
 public function firstExample(string $first, ?int $second, bool $third = false, float ...$fourth): string
@@ -585,7 +729,7 @@ public function secondExample(?int $second, bool $third = false, float ...$fourt
 public function thirdExample(bool $third = false, float ...$fourth): string
 ```
 
-### 3.9. Массив в виде аргумента
+### 3.10. Массив в виде аргумента
 
 Для методов, содержащих один и более аргументов с типом массив РЕКОМЕНДУЕТСЯ указывать хотя бы один такой аргумент
 с помощью оператора `...`.
@@ -596,7 +740,7 @@ public function concatStrings(string ...$parts): string
 ```
 
 ```php
-// Не правильно
+// Неправильно
 /**
  * @param string $parts
  */
@@ -611,7 +755,7 @@ public function concatStrings(array $parts): string
 
 > Неявное приведение типов — один из наиболее распространенных источников ошибок.
 > Проблемы, возникающие при неявном приведении типов сложно отслеживать,
-> так же они могут приводить к не предсказуемым последствиям.
+> так же они могут приводить к непредсказуемым последствиям.
 
 ```php
 echo 5 + '5abc5';
@@ -644,6 +788,7 @@ if ('abc' == 0) {
 switch ('abc') {
     case 0:
         echo 'wat';
+
         break;
 }
 
@@ -731,7 +876,7 @@ if ($file === false) {
 > в рантайме.
 
 ```php
-// Не правильно
+// Неправильно
 $this->{$methodName}($argument);
 ```
 
@@ -759,7 +904,7 @@ $this->{$methodName}($argument);
 Вместо `\DateTime` НЕОБХОДИМО использовать `\DateTimeImmutable`.
 
 > Так как в PHP объекты передаются по ссылке изменение объекта `\DateTime` в одной части кода влечет за собой изменение
-> по всему рантайму, что может привести к не предсказуемым последствиям. Что бы исключить целый класс ошибок, связанных
+> по всему рантайму, что может привести к непредсказуемым последствиям. Что бы исключить целый класс ошибок, связанных
 > с не явным изменением даты/времени из внешнего кода НЕОБХОДИМО использовать `\DateTimeImmutable`.
 
 ```php
@@ -800,15 +945,16 @@ printf("createdAt: %s, expiredAt: %s", $createdAt->format('Y-m-d'), $expiredAt->
 
 ### 5.2. YAGNI
 
-РЕКОМЕНДУЕТСЯ следовать принципу YAGNI.
+РЕКОМЕНДУЕТСЯ следовать принципу [YAGNI](https://ru.wikipedia.org/wiki/YAGNI).
 
 ### 5.3. SOLID
 
-Код ДОЛЖЕН следовать принципам SOLID.
+Код ДОЛЖЕН следовать принципам [SOLID](https://ru.wikipedia.org/wiki/SOLID_(объектно-ориентированное_программирование)).
 
 ### 5.4. DRY
 
-Принципу DRY СЛЕДУЕТ придерживаться только в случае, когда он не противоречит SOLID и Здравому смыслу.
+Принципу [DRY](https://ru.wikipedia.org/wiki/Don't_repeat_yourself) СЛЕДУЕТ придерживаться только в случае, когда он не
+противоречит SOLID и Здравому смыслу.
 
 > Примеры, когда не стоит следовать принципу DRY:
 >
@@ -822,7 +968,8 @@ printf("createdAt: %s, expiredAt: %s", $createdAt->format('Y-m-d'), $expiredAt->
 
 ### 5.5. KISS
 
-Принципу KISS СЛЕДУЕТ придерживаться только в случае, когда он не противоречит другим правилам данных рекомендаций.
+Принципу [KISS](https://ru.wikipedia.org/wiki/KISS_(принцип)) СЛЕДУЕТ придерживаться только в случае, когда он не
+противоречит другим правилам данных рекомендаций.
 
 > Примеры, когда не стоит следовать принципу KISS:
 >
@@ -836,18 +983,18 @@ printf("createdAt: %s, expiredAt: %s", $createdAt->format('Y-m-d'), $expiredAt->
 
 ### 5.6. TMTOWTDI
 
-Принцип TMTOWTDI НЕ РЕКОМЕНДУЕТСЯ использовать.
+Принцип [TMTOWTDI](https://ru.wikipedia.org/wiki/TMTOWTDI) НЕ РЕКОМЕНДУЕТСЯ использовать.
 
 > Множество способов реализации одного и того же алгоритма ведет к тому, что правки алгоритма придется выполнять в
 > каждой реализации, что в свою очередь усложняет поддержку и увеличивает вероятность ошибок.
 
 ### 5.7. GRASP
 
-РЕКОМЕНДУЕТСЯ следовать принципам GRASP.
+РЕКОМЕНДУЕТСЯ следовать принципам [GRASP](https://ru.wikipedia.org/wiki/GRASP).
 
 ## 6. Антишаблоны проектирования
 
-## 6.1. ActiveRecord
+### 6.1. ActiveRecord
 
 `ActiveRecord` РЕКОМЕНДУЕТСЯ считать антишаблоном и не использовать его. Вместо этого РЕКОМЕНДУЕТСЯ использовать
 шаблон `Repository`.
@@ -859,10 +1006,10 @@ printf("createdAt: %s, expiredAt: %s", $createdAt->format('Y-m-d'), $expiredAt->
 >  * Потеря контроля над тем, у каких модулей использующих сущность должен быть доступ к базе данных, а у каких нет.
 >  * Увеличение количества зависимостей от модели и, как следствие, изменяемого объема кода, при правках модели.
 
-## 6.2. Singleton
+### 6.2. Singleton
 
 `Singleton` РЕКОМЕНДУЕТСЯ считать антишаблоном и не использовать его. Вместо этого РЕКОМЕНДУЕТСЯ использовать
-`Dependency Ingection`.
+`Dependency Injection`.
 
 > Проблема `Singleton` заключается в том, что состояние объекта, как правило, хранится в статическом свойстве, и
 > является не явным аргументом метода, или функции, см. пункт `4.10.` данных рекомендаций.
@@ -921,7 +1068,7 @@ public function execute(string $commandName): void
 
 ### 7.3. Разделение тест методов
 
-Каждый тест метод ДОЛЖЕН быть полностью независим от других тест методов.
+Каждый тест метод ДОЛЖЕН иметь полностью независимое состояние, относительно других тест методов.
 Каждый тест метод ДОЛЖЕН проверять конкретное поведение тестируемого метода (функции), тест методы, которые проверяют
 несколько аспектов поведения НЕДОПУСТИМЫ.
 
@@ -1390,7 +1537,7 @@ $this->assertInstanceOf(JsonResponse::class, $response);
 ```
 
 ```php
-// Не правильно
+// Неправильно
 // В случае возникновения ошибки не будет ясно, что же за ошибка произошла, вместо этого получим только несоответствие
 // типа $response, или статус кода.
 /** @var JsonResponse|Response $response */
@@ -1413,7 +1560,7 @@ $this->assertSame($expectedExceptionMessage, $exceptionContext['exception']->get
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $exceptionContext = $object->method(/* ... */);
 
 $this->assertSame($expectedExceptionMessage, $exceptionContext['exception']->getMessage());
@@ -1431,10 +1578,10 @@ $this->assertSame($expectedExceptionMessage, $exceptionContext['exception']->get
 // Правильно
 $this->assertSame($expectedString, $actualString);
 
-// Не правильно
+// Неправильно
 $this->assertSame(true, $expectedString === $actualString);
 
-// Не правильно
+// Неправильно
 $this->assertTrue($expectedString === $actualString);
 ```
 
@@ -1442,7 +1589,7 @@ $this->assertTrue($expectedString === $actualString);
 // Правильно
 $this->assertStringStartsWith($expectedPrefix, $actualString);
 
-// Не правильно
+// Неправильно
 $this->assertSame(0, strpos($actualString, $expectedPrefix));
 ```
 
@@ -1450,10 +1597,10 @@ $this->assertSame(0, strpos($actualString, $expectedPrefix));
 // Правильно
 $this->assertTrue($actualBool);
 
-// Не правильно
+// Неправильно
 $this->assertTrue($actualBool === true);
 
-// Не правильно
+// Неправильно
 $this->assertSame(true, $actualBool);
 ```
 
@@ -1484,7 +1631,7 @@ $userRepository
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $userRepository
     ->expects($this->once())
     ->method('findByGroup')
@@ -1514,7 +1661,7 @@ $this->assertSame($expected, $actual);
 ```
 
 ```php
-// Не правильно
+// Неправильно
 $expected = 5;
 $actual   = 5;
 
